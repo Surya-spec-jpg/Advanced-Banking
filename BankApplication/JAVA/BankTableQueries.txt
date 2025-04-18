@@ -1,0 +1,25 @@
+CREATE TABLE accountmaster (
+  accno int NOT NULL AUTO_INCREMENT,
+  name varchar(40) NOT NULL,
+  address varchar(60) NOT NULL,
+  date date NOT NULL,
+  pan char(10) NOT NULL,
+  phone varchar(20) DEFAULT NULL,
+  email varchar(50) DEFAULT NULL,
+  balance decimal(10,2) NOT NULL,
+  PRIMARY KEY (accno)
+) ENGINE=InnoDB AUTO_INCREMENT=1004 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+=========================================
+
+CREATE TABLE transaction (
+  tid int NOT NULL AUTO_INCREMENT,
+  accno int NOT NULL,
+  date date NOT NULL,
+  type varchar(20) NOT NULL,
+  amount decimal(10,2) NOT NULL,
+  balance decimal(10,2) NOT NULL,
+  PRIMARY KEY (tid),
+  KEY accno (accno),
+  CONSTRAINT transaction_ibfk_1 FOREIGN KEY (accno) REFERENCES accountmaster (accno)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
